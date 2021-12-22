@@ -94,10 +94,15 @@ export default {
   props: {
     msg: String,
   },
+  data: function () {
+    return {
+      discs: [],
+    };
+  },
   created: function () {
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
     .then((response) => {
-      console.log(response.data.response)
+      this.discs = response.data.response;
     });
   }
 };
