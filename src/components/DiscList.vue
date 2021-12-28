@@ -43,7 +43,10 @@ section{
     background-color: #1e2d3b;
     padding: $section-padding;
     .container{
-        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 100px);
         .row{
             display: flex;
             justify-content: center;
