@@ -33,7 +33,6 @@ export default {
     &-image{
         height: 200px;
         overflow: hidden;
-
         img{
             height: 100%;
             object-fit: cover;

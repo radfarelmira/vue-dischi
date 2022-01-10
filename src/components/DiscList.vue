@@ -1,13 +1,16 @@
 <template>
     <section>
         <div class="container">
-            <div v-if="!isLoadingApi" class="row row-cols-2 row-cols-lg-6">
-                <DiscCard v-for="(disc, index) in discs" :key="index" :discObj="disc"/>  
-            </div>
+            <DiscSelect @selectClicked="selectPerformed"/>
+
+            <div class="wrapper">
+                <div v-if="!isLoadingApi" class="row row-cols-2 row-cols-lg-6">
+                    <DiscCard v-for="(disc, index) in discs" :key="index" :discObj="disc"/>  
+                </div>
 
             <Loader v-else/>
         </div>
-
+        </div>
     </section>
 </template>
 
@@ -15,18 +18,26 @@
 import axios from 'axios';
 import DiscCard from './DiscCard';
 import Loader from './Loader';
+import DiscSelect from './DiscSelect';
 
 export default {
     name: 'DiscList',
     components: {
         DiscCard,
         Loader,
+        DiscSelect
     },
     data: function () {
     return {
       discs: [],
-      isLoadingApi: true
+      isLoadingApi: true,
+      selectValue: ''
     };
+  },
+  methods: {
+      selectPerformed: function (text) {
+          this.selectValue= text;
+      },
   },
   created: function () {
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
@@ -45,7 +56,7 @@ export default {
 section{
     background-color: #1e2d3b;
     padding: $section-padding;
-    .container{
+    .wrapper{
         display: flex;
         justify-content: center;
         align-items: center;
