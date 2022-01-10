@@ -1,7 +1,7 @@
 <template>
     <div class="select-container">
         <select @change="selectDone" v-model="selectValue" name="" id="">
-            <option value="">All</option>
+            <option value="">All Genre</option>
             <option value="Pop">Pop</option>
             <option value="Rock">Rock</option>
             <option value="Jazz">Jazz</option>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    name: 'DiscSelect',
+    name: 'GenreSelect',
     data: function () {
         return {
             selectValue: ''
@@ -30,7 +30,7 @@ export default {
 @import '../style/variables.scss';
 
 .select-container{
-
+    margin: 10px 0;
     select{
         width: 200px;
         font-weight: bold;

@@ -1,7 +1,9 @@
 <template>
     <section>
         <div class="container">
-            <DiscSelect @selectClicked="selectPerformed"/>
+            <GenreSelect @selectClicked="selectPerformed"/>
+
+            <ArtistSelect @selectClicked="selectPerformed"/>
 
             <div class="wrapper">
                 <div v-if="!isLoadingApi" class="row row-cols-2 row-cols-lg-6">
@@ -18,14 +20,16 @@
 import axios from 'axios';
 import DiscCard from './DiscCard';
 import Loader from './Loader';
-import DiscSelect from './DiscSelect';
+import GenreSelect from './GenreSelect';
+import ArtistSelect from './ArtistSelect';
 
 export default {
     name: 'DiscList',
     components: {
         DiscCard,
         Loader,
-        DiscSelect
+        GenreSelect,
+        ArtistSelect
     },
     data: function () {
     return {
@@ -46,7 +50,12 @@ export default {
         }
 
         const filteredArray = this.discs.filter((element) => {
+            if (element.genre === this.selectValue){
                 return element.genre.toLowerCase().includes(this.selectValue.toLowerCase());
+            } else if (element.author === this.selectValue){
+                return element.author.toLowerCase().includes(this.selectValue.toLowerCase())
+            }
+
             });
 
             return filteredArray;
