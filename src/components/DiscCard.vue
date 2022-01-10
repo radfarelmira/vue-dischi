@@ -28,12 +28,14 @@ export default {
     background-color: $primary-color;
     margin: 10px;
     padding: 20px;
+    min-width: 200px;
     min-height: 450px;
 
     &-image{
         height: 200px;
         overflow: hidden;
         img{
+            width: 100%;
             height: 100%;
             object-fit: cover;
         }

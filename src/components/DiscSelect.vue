@@ -30,7 +30,6 @@ export default {
 @import '../style/variables.scss';
 
 .select-container{
-    margin: 20px 60px;
 
     select{
         width: 200px;

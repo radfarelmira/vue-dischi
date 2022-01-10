@@ -5,7 +5,7 @@
 
             <div class="wrapper">
                 <div v-if="!isLoadingApi" class="row row-cols-2 row-cols-lg-6">
-                    <DiscCard v-for="(disc, index) in discs" :key="index" :discObj="disc"/>  
+                    <DiscCard v-for="(disc, index) in filteredDiscs" :key="index" :discObj="disc"/>  
                 </div>
 
             <Loader v-else/>
@@ -37,8 +37,21 @@ export default {
   methods: {
       selectPerformed: function (text) {
           this.selectValue= text;
-      },
-  },
+        },
+    },
+  computed: {
+      filteredDiscs: function() {
+        if (this.selectValue === '') {
+            return this.discs;
+        }
+
+        const filteredArray = this.discs.filter((element) => {
+                return element.genre.toLowerCase().includes(this.selectValue.toLowerCase());
+            });
+
+            return filteredArray;
+        }
+    },
   created: function () {
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
     .then((response) => {
@@ -59,7 +72,7 @@ section{
     .wrapper{
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         min-height: calc(100vh - 100px);
         .row{
             display: flex;
