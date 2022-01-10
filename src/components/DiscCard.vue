@@ -45,6 +45,9 @@ export default {
     &-title{
         color: white;
         margin-top: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 20px;
     }
 
     &-author{

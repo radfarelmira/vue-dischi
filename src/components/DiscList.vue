@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="container">
-            <div v-if="discs.length > 0" class="row row-cols-2 row-cols-lg-6">
+            <div v-if="!isLoadingApi" class="row row-cols-2 row-cols-lg-6">
                 <DiscCard v-for="(disc, index) in discs" :key="index" :discObj="disc"/>  
             </div>
 
@@ -25,12 +25,15 @@ export default {
     data: function () {
     return {
       discs: [],
+      isLoadingApi: true
     };
   },
   created: function () {
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
     .then((response) => {
       this.discs = response.data.response;
+
+      this.isLoadingApi= false;
     });
   }
 }
