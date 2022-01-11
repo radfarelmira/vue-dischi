@@ -51,9 +51,9 @@ export default {
 
         const filteredArray = this.discs.filter((element) => {
             if (element.genre === this.selectValue){
-                return element.genre.toLowerCase().includes(this.selectValue.toLowerCase());
+                return element.genre;
             }else if (element.author === this.selectValue){
-                return element.author.toLowerCase().includes(this.selectValue.toLowerCase())
+                return element.author;
             }
 
             });
